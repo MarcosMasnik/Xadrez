@@ -1,5 +1,5 @@
 ﻿
-namespace Tabuleiro
+namespace Xadrez
 {
     class Posicao
     {
