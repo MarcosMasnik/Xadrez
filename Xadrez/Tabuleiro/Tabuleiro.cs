@@ -72,8 +72,8 @@ namespace Xadrez
         {
             bool valida = true;
 
-            if(pos.linha < 0 || pos.coluna> 7 ||
-                pos.coluna <0 || pos.coluna > 7)
+            if(pos.linha < 0 || pos.linha > 7 ||
+                pos.coluna < 0 || pos.coluna  > 7)
             {
                 valida = false;
             }
