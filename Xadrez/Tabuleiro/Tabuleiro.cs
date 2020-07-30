@@ -19,11 +19,60 @@ namespace Xadrez
         {
             return pecas[linha, coluna];
         }
+        public Peca Peca(Posicao pos)
+        {
+            return pecas[pos.linha, pos.coluna];
+        }
+
+        public bool ExistePeca(Posicao pos)
+        {
+            bool existe = false;
+
+            // verifica primeiro se a posição é válida
+            ValidaPosicao(pos);
+
+            if (pecas[pos.linha, pos.coluna] != null)
+            {
+                existe = true;
+            }
+
+            return existe;
+        }
 
         public void ColocarPeca(Peca p, Posicao pos)
         {
-            this.pecas[pos.linha, pos.coluna] = p;
-            p.posicao = pos;
+            if(! ExistePeca(pos) )
+                // se não existir Peca na posicao pos, coloca a Peca
+            {
+                this.pecas[pos.linha, pos.coluna] = p;
+                p.posicao = pos;
+            }
+            else
+            {
+                throw new TabuleiroException("Já existe peça nesta posição");
+            }
+
+        }
+
+        public bool PosicaoValida(Posicao pos)
+        {
+            bool valida = true;
+
+            if(pos.linha < 0 || pos.coluna> 7 ||
+                pos.coluna <0 || pos.coluna > 7)
+            {
+                valida = false;
+            }
+
+            return valida;
+        }
+
+        public void ValidaPosicao(Posicao pos)
+        {
+            if (!PosicaoValida(pos))
+            {
+                throw new TabuleiroException("Posição inválida");
+            }
         }
     }
 }
